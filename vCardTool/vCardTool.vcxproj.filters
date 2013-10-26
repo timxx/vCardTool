@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Tim">
+      <UniqueIdentifier>{3eb982f8-26e3-44c1-a7e3-99f8c047a931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tim">
+      <UniqueIdentifier>{b1d50765-98a5-4f09-a4a1-c7afd1fbb474}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vCardWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgAbout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\ClassEx.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\CommonCtrls.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\Dialog.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\LinkCtrl.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\Rect.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\SException.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\tim.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\TString.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\Window.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tim\File.h">
+      <Filter>Header Files\Tim</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vCardWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgAbout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim\SException.cpp">
+      <Filter>Source Files\Tim</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim\TString.cpp">
+      <Filter>Source Files\Tim</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim\LinkCtrl.cpp">
+      <Filter>Source Files\Tim</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim\Dialog.cpp">
+      <Filter>Source Files\Tim</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tim\File.cpp">
+      <Filter>Source Files\Tim</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vCardTool.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
