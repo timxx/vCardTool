@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __FILE_H__
 #define __FILE_H__
 
-#include <Windows.h>
+#include <windows.h>
 #include <string>
 
 #include "tim.h"

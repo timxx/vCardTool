@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,13 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __SEH_EXCEPTION_H__
 #define __SEH_EXCEPTION_H__
 
-#include <Windows.h>
+#include <windows.h>
 #include <exception>
+#include <stdexcept>
 
 #include "tim.h"
 
-//×¢Òâ±àÒëÑ¡Ïî
-//Enable C++ Exception Ñ¡/EHa
+//æ³¨æ„ç¼–è¯‘é€‰é¡¹
+//Enable C++ Exception é€‰/EHa
 
 _TIM_BEGIN
 
@@ -38,7 +39,7 @@ protected:
 	SException(EXCEPTION_POINTERS *pExp) throw();
 
 public:
-	//Ã¿¸öÏß³Ìµ÷ÓÃÒ»´Î¼´¿É
+	//æ¯ä¸ªçº¿ç¨‹è°ƒç”¨ä¸€æ¬¡å³å¯
 	static void install() throw();
 
 	virtual const char*	what()  const throw();

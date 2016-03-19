@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //////////////////////////////////////////////////////////////////////////
 #include <vector>
 
-#include "Tim\TString.h"
+#include "Tim/TString.h"
 //////////////////////////////////////////////////////////////////////////
 using namespace std;
 using namespace Tim;
@@ -51,7 +51,7 @@ public:
 		return _data;
 	}
 
-	//Çå0
+	//æ¸…0
 	void clear();
 	void analyse();
 
@@ -59,21 +59,21 @@ public:
 #ifdef UNICODE
 		return atow(_name).c_str();
 #else
-		return _name;
+		return _name.c_str();
 #endif
 	}
 	TString formattedname() const{
 #ifdef UNICODE
 		return atow(_fn).c_str();
 #else
-		return _fn;
+		return _fn.c_str();
 #endif
 	}
 	TString tel() const{
 #ifdef UNICODE
 		return atow(_tel).c_str();
 #else
-		return _tel;
+		return _tel.c_str();
 #endif
 	}
 
@@ -81,7 +81,7 @@ public:
 #ifdef UNICODE
 		return atow(_mail).c_str();
 #else
-		return _mail;
+		return _mail.c_str();
 #endif
 	}
 
@@ -89,7 +89,7 @@ public:
 #ifdef UNICODE
 		return atow(_nickname).c_str();
 #else
-		return _nickname;
+		return _nickname.c_str();
 #endif
 	}
 
@@ -97,7 +97,7 @@ public:
 #ifdef UNICODE
 		return atow(_title).c_str();
 #else
-		return _title;
+		return _title.c_str();
 #endif
 	}
 
@@ -105,7 +105,7 @@ public:
 #ifdef UNICODE
 		return atow(_url).c_str();
 #else
-		return _url;
+		return _url.c_str();
 #endif
 	}
 
@@ -113,14 +113,14 @@ public:
 #ifdef UNICODE
 		return atow(_bday).c_str();
 #else
-		return _bday;
+		return _bday.c_str();
 #endif
 	}
 	TString organization() const {
 #ifdef UNICODE
 		return atow(_org).c_str();
 #else
-		return _org;
+		return _org.c_str();
 #endif
 	}
 
@@ -128,7 +128,7 @@ public:
 #ifdef UNICODE
 		return atow(_addr).c_str();
 #else
-		return _addr;
+		return _addr.c_str();
 #endif
 	}
 
@@ -136,7 +136,7 @@ public:
 #ifdef UNICODE
 		return atow(_note).c_str();
 #else
-		return _note;
+		return _note.c_str();
 #endif
 	}
 
@@ -145,54 +145,54 @@ public:
 	int Base64Encode(const BYTE *pSrc, int nSrcLen, BYTE *pDest);
 	int Base64Decode(const BYTE *pSrc, int nSrcLen, BYTE *pDest);
 
-	//Quoted-Printable½âÂë
-	//µ±pDstÎªNULLÊ±·µ»ØËùĞè´óĞ¡
+	//Quoted-Printableè§£ç 
+	//å½“pDstä¸ºNULLæ—¶è¿”å›æ‰€éœ€å¤§å°
 	int QPDecode(const char* pSrc, int nSrcLen, unsigned char* pDst);
 
-	//Quoted-Printable±àÂë
+	//Quoted-Printableç¼–ç 
 	int QPEncode(const unsigned char* pSrc, int nSrcLen, char* pDst, int nMaxLineLen);
 
 
 protected:
 	void BreakToLine();
 
-	//ÅĞ¶ÏÊÇ·ñÊÇÄ³¸ö±êÇ©µÄÍ·
+	//åˆ¤æ–­æ˜¯å¦æ˜¯æŸä¸ªæ ‡ç­¾çš„å¤´
 	bool istag(const char *pSrc, const char *tagName, int nSrcLen);
 	
-	//¶ÁÈ¡pSrcĞĞµÄÖµµ½valueToStore
+	//è¯»å–pSrcè¡Œçš„å€¼åˆ°valueToStore
 	void readtag(const char *pSrc, int len, string &valueToStore);
 
-	void RemoveSemicolon(string &src);	//ÒÆ³ıºóÃæËùÓĞµÄÓ¢ÎÄ·ÖºÅ
-	void RemoveEndChar(string &src);	//ÒÆ³ıºóÃæËùÓĞµÄ'\0'
+	void RemoveSemicolon(string &src);	//ç§»é™¤åé¢æ‰€æœ‰çš„è‹±æ–‡åˆ†å·
+	void RemoveEndChar(string &src);	//ç§»é™¤åé¢æ‰€æœ‰çš„'\0'
 
 	enum encoding{ ec_none, ec_qp, ec_base64, ec_8bit};
 	enum charset{ cs_def, cs_utf8 };
 
-	//·µ»ØpSrcĞĞµÄENCODINGÄÚÈİ£¬Èç¹û´æÔÚ
+	//è¿”å›pSrcè¡Œçš„ENCODINGå†…å®¹ï¼Œå¦‚æœå­˜åœ¨
 	encoding GetEncoding(const char *pSrc, int len);
 	//CHARSET
 	charset GetCharset(const char *pSrc, int len);
-	//È¡×Ô':'ºóµÄÄÚÈİ
+	//å–è‡ª':'åçš„å†…å®¹
 	string GetValue(const char *pSrc, int nSrcLen);
 
-	//utf-8±àÂëÊ±×ªÎªansi
+	//utf-8ç¼–ç æ—¶è½¬ä¸ºansi
 	string utf8toa(const char *str);
 
 	void readphoto(const char *pSrc, int len);
 
 private:
-//	string _ver;		//°æ±¾(VERSION)
-	string _name;		//Ãû×Ö(N)
-	string _fn;			//ÕıÊ½Ãû³Æ(FN; formtted name)
-	string _nickname;	//êÇ³Æ(NICKNAME)
-	string _tel;		//ºÅÂë(TEL)
-	string _note;		//×¢ÊÍ(NOTE)
-	string _mail;		//µç×ÓÓÊ¼ş(EMAIL)
-	string _title;		//Ö°Îñ(TITLE)
-	string _url;		//ÍøÖ·(URL)
-	string _bday;		//ÉúÈÕ(BDAY)
-	string _org;		//×éÖ¯Ãû³Æ(ORG)
-	string _addr;		//µØÖ·(ADR)
+//	string _ver;		//ç‰ˆæœ¬(VERSION)
+	string _name;		//åå­—(N)
+	string _fn;			//æ­£å¼åç§°(FN; formtted name)
+	string _nickname;	//æ˜µç§°(NICKNAME)
+	string _tel;		//å·ç (TEL)
+	string _note;		//æ³¨é‡Š(NOTE)
+	string _mail;		//ç”µå­é‚®ä»¶(EMAIL)
+	string _title;		//èŒåŠ¡(TITLE)
+	string _url;		//ç½‘å€(URL)
+	string _bday;		//ç”Ÿæ—¥(BDAY)
+	string _org;		//ç»„ç»‡åç§°(ORG)
+	string _addr;		//åœ°å€(ADR)
 
 	string _data;
 	vector<string> _vlines;

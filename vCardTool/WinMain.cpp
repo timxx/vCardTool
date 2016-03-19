@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -22,35 +22,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //========================================================================================================
 //////////////////////////////////////////////////////////////////////////
 #include "vCardWnd.h"
-#include "Tim\SException.h"
+#include "Tim/SException.h"
 //////////////////////////////////////////////////////////////////////////
-int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
 	MSG msg = {0};
+#if defined(_UNICODE)
+	std::wstring strCmdLine = atow(lpCmdLine);
+#else
+	std::string strCmdLine(lpCmdLine);
+#endif
 
 	CreateMutex(NULL, FALSE, TEXT("vCardToolMutex"));
 
-	//ÒÑ¾­ÔËĞĞÁËÒ»¸öÊµÀı
+	//å·²ç»è¿è¡Œäº†ä¸€ä¸ªå®ä¾‹
 	if (GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		HWND hWnd = FindWindow(vCardWnd::getClassName(), NULL);
 
-		//Èç¹û³ÌĞò×îĞ¡»¯
-		//ÏÈ»¹Ô­´°¿Ú
+		//å¦‚æœç¨‹åºæœ€å°åŒ–
+		//å…ˆè¿˜åŸçª—å£
 		if (IsIconic(hWnd)){
 			SendMessage(hWnd, WM_SYSCOMMAND, SC_RESTORE, 0);
 		}
-		//ÔÙÖÃÇ°´°¿Ú
+		//å†ç½®å‰çª—å£
 		SetForegroundWindow(hWnd);
 
-		if (*lpCmdLine)
+		if (!strCmdLine.empty())
 		{
 			COPYDATASTRUCT cds;
 			RtlSecureZeroMemory(&cds, sizeof(COPYDATASTRUCT));
 
 			cds.dwData = 0;
-			cds.cbData = (lstrlen(lpCmdLine)+1)*sizeof(TCHAR);
-			cds.lpData = lpCmdLine;
+			cds.cbData = (strCmdLine.size() + 1) * sizeof(TCHAR);
+			cds.lpData = (PVOID)strCmdLine.c_str();
 
 			SendMessage(hWnd, WM_COPYDATA, (WPARAM)hInst, (LPARAM)&cds);
 		}
@@ -66,8 +71,8 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE, LPTSTR lpCmdLine, int nCmdShow)
 	{
 		vcWnd.init(hInst, NULL);
 
-		if (*lpCmdLine){
-			vcWnd.OpenFromCmd(lpCmdLine);
+		if (!strCmdLine.empty()) {
+			vcWnd.OpenFromCmd(strCmdLine.c_str());
 		}
 
 		HACCEL hAcc = LoadAccelerators(hInst, MAKEINTRESOURCE(IDR_ACCELERATOR1));

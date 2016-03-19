@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //========================================================================
 #define _CRT_SECURE_NO_WARNINGS
 //========================================================================
-#include <Windows.h>
+#include <windows.h>
 #include <shlwapi.h>
 
 #include "vCard.h"
@@ -202,7 +202,7 @@ int vCard::Base64Decode(const BYTE *pSrc, int nSrcLen, BYTE *pDest)
 	BYTE DecodeBase64Map[256] = {0} ;
 	int i, j;
 
-	 //ºöÂÔ=ºÅ
+	 //å¿½ç•¥=å·
 	for(j = nSrcLen; j>0 && '=' == pSrc[j-1]; --j)
 		;
 
@@ -225,12 +225,12 @@ int vCard::Base64Decode(const BYTE *pSrc, int nSrcLen, BYTE *pDest)
 //========================================================================
 int vCard::QPEncode(const unsigned char* pSrc, int nSrcLen, char* pDst, int nMaxLineLen)
 {
-	int nDstLen = 0;        // Êä³öµÄ×Ö·û¼ÆÊı
-	int nLineLen = 0;       // Êä³öµÄĞĞ³¤¶È¼ÆÊı
+	int nDstLen = 0;        // è¾“å‡ºçš„å­—ç¬¦è®¡æ•°
+	int nLineLen = 0;       // è¾“å‡ºçš„è¡Œé•¿åº¦è®¡æ•°
 
 	for (int i = 0; i < nSrcLen; i++, pSrc++)
 	{
-		// ASCII 33-60, 62-126Ô­ÑùÊä³ö£¬ÆäÓàµÄĞè±àÂë
+		// ASCII 33-60, 62-126åŸæ ·è¾“å‡ºï¼Œå…¶ä½™çš„éœ€ç¼–ç 
 		if ((*pSrc >= '!') && (*pSrc <= '~') && (*pSrc != '='))
 		{
 			if (pDst){
@@ -251,7 +251,7 @@ int vCard::QPEncode(const unsigned char* pSrc, int nSrcLen, char* pDst, int nMax
 			nLineLen += 3;
 		}
 
-		// Êä³ö»»ĞĞ
+		// è¾“å‡ºæ¢è¡Œ
 		if (nLineLen >= nMaxLineLen - 3)
 		{
 			if (pDst)
@@ -273,26 +273,26 @@ int vCard::QPEncode(const unsigned char* pSrc, int nSrcLen, char* pDst, int nMax
 //========================================================================
 int vCard::QPDecode(const char* pSrc, int nSrcLen, unsigned char* pDst)
 {
-	int nDstLen = 0;        // Êä³öµÄ×Ö·û¼ÆÊı
+	int nDstLen = 0;        // è¾“å‡ºçš„å­—ç¬¦è®¡æ•°
 	int i = 0;
 
 	while (i < nSrcLen)
 	{
-		if (strncmp(pSrc, "=\r\n", 3) == 0)        // Èí»Ø³µ£¬Ìø¹ı
+		if (strncmp(pSrc, "=\r\n", 3) == 0)        // è½¯å›è½¦ï¼Œè·³è¿‡
 		{
 			pSrc += 3;
 			i += 3;
 		}
 		else
 		{
-			if (*pSrc == '=')        // ÊÇ±àÂë×Ö½Ú
+			if (*pSrc == '=')        // æ˜¯ç¼–ç å­—èŠ‚
 			{
 				if (pDst)
 				{
-					//Õâº¯Êı×ÜÊÇÓĞÎÊÌâ£¡£¡£¡²»ÓÃÁË
+					//è¿™å‡½æ•°æ€»æ˜¯æœ‰é—®é¢˜ï¼ï¼ï¼ä¸ç”¨äº†
 					//sscanf_s(pSrc, "=%02X", pDst);
 
-					pSrc++;	//Ìø¹ı=
+					pSrc++;	//è·³è¿‡=
 					char ch[3] = {0};
 					size_t j = 0;
 
@@ -311,7 +311,7 @@ int vCard::QPDecode(const char* pSrc, int nSrcLen, unsigned char* pDst)
 					i += 3;
 				}
 			}
-			else        // ·Ç±àÂë×Ö½Ú
+			else        // éç¼–ç å­—èŠ‚
 			{
 				if (pDst){
 					*pDst++ = (unsigned char)*pSrc++;
@@ -382,7 +382,7 @@ bool vCard::istag(const char *pSrc, const char *tagName, int nSrcLen)
 	const char *p = pSrc;
 	const char *q = tagName;
 
-	//²»Çø·Ö´óĞ¡Ğ´
+	//ä¸åŒºåˆ†å¤§å°å†™
 	while (nSrcLen >=0 && *q && (islower(*p) ? *p - 32 : *p) == *q)
 		p++, q++, nSrcLen--;
 
@@ -423,7 +423,7 @@ void vCard::BreakToLine()
 		if (len < 0 || !*p)
 			break;
 
-		//½Ó×ÅÉÏÒ»ĞĞµÄ
+		//æ¥ç€ä¸Šä¸€è¡Œçš„
 		if (*p == '=')
 		{
 			//Fixed: if line is empty, then pop_back would
@@ -432,7 +432,7 @@ void vCard::BreakToLine()
 			if (line.empty())
 				continue;
 
-			line.pop_back();	//É¾³ı×îºóÒ»¸ö'='
+			line.erase(line.size() -1);	//åˆ é™¤æœ€åä¸€ä¸ª'='
 
 			while (len >= 0 && *p && *p != '\r' && *p != '\n')
 			{
@@ -442,9 +442,9 @@ void vCard::BreakToLine()
 			}
 			if (!line.empty())
 			{
-				//É¾µô×îºóÒ»¸ö'='
+				//åˆ æ‰æœ€åä¸€ä¸ª'='
 				if (line.at(line.length()-1) == '=')
-					line.pop_back();
+					line.erase(line.size() -1);
 
 				_vlines.pop_back();
 				_vlines.push_back(line);
@@ -481,7 +481,7 @@ void vCard::RemoveSemicolon(string &src)
 void vCard::RemoveEndChar(string &src)
 {
 	while (src.length() > 0 && src.at(src.length()-1) == 0)
-		src.pop_back();
+		src.erase(src.size() - 1);
 }
 //========================================================================
 void vCard::readtag(const char *pSrc, int len, string &valueToStore)
@@ -493,7 +493,7 @@ void vCard::readtag(const char *pSrc, int len, string &valueToStore)
 
 	string value = GetValue(p, len);
 
-	//¿ÕÖµ£¬·µ»Ø
+	//ç©ºå€¼ï¼Œè¿”å›
 	if (value.empty())
 		return ;
 
@@ -527,7 +527,7 @@ void vCard::readtag(const char *pSrc, int len, string &valueToStore)
 		decStr = tmpStr;
 	}
 
-	if (!valueToStore.empty())	//Ö®Ç°ÒÑ¸³¹ıÖµ£¬¼Óµ½Ä©Î²
+	if (!valueToStore.empty())	//ä¹‹å‰å·²èµ‹è¿‡å€¼ï¼ŒåŠ åˆ°æœ«å°¾
 	{
 		if (cs == cs_utf8)
 			valueToStore +=  utf8toa(decStr.c_str());

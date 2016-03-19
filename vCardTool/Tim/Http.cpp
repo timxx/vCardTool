@@ -1,4 +1,4 @@
-/*
+Ôªø/*
 http://code.google.com/p/navifirmex/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 //===================================================================
-#include <Windows.h>
+#include <windows.h>
 #include <tchar.h>
 
 #include "Http.h"
@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma comment(lib, "Wininet.lib")
 
 //===================================================================
-#define READ_SIZE 8192	//“ª¥Œ◊Ó¥Û∂¡»° ˝æ›
+#define READ_SIZE 8192	//‰∏ÄÊ¨°ÊúÄÂ§ßËØªÂèñÊï∞ÊçÆ
 //===================================================================
 using namespace _TIM;
 //===================================================================

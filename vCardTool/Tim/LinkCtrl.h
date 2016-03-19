@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/navifirmex/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -41,7 +41,7 @@ public:
 			DeleteObject(_hfUnderlined);
 	}
 
-    void create(HWND hwndStatic, TCHAR *link, COLORREF linkColor = RGB(0, 0, 255));
+    void create(HWND hwndStatic, const TCHAR *link, COLORREF linkColor = RGB(0, 0, 255));
 	void create(HWND hwndStatic, int cmd, HWND msgDest = NULL);
 
 protected:

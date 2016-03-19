@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/navifirmex/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 

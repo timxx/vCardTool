@@ -1,0 +1,15 @@
+build
+*.swp
+*.cbp
+*.o
+*.a
+*.obj
+*.exe
+*.res
+*.user
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.aps
+

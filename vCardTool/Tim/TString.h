@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -54,7 +54,7 @@ public:
 	size_type find(const TString &findWhat, size_type offset = 0, bool caseSensitive = true);
 	int compare(const TString &other, bool caseSensitive = true);
 
-	//Ã²ËÆÕâÑùÓÃÃ»ÎÊÌâ¡£¡£¡£
+	//è²Œä¼¼è¿™æ ·ç”¨æ²¡é—®é¢˜ã€‚ã€‚ã€‚
 	operator const TCHAR* () const{
 		return c_str();
 	}

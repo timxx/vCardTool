@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -96,7 +96,7 @@ public:
 		this->SetRect(&rect);
 		return *this;
 	}
-	//ÒÔÖÐÐÄÀ©´óoffset
+	//ä»¥ä¸­å¿ƒæ‰©å¤§offset
 	Rect & operator += (int offset){
 		this->left -= offset;
 		this->top -= offset;
@@ -121,7 +121,7 @@ public:
 		return *this;
 	}
 
-	//ÒÔÖÐÐÄÀ©´ó
+	//ä»¥ä¸­å¿ƒæ‰©å¤§
 	Rect & operator *= (int offset){
 		this->left /= offset;
 		this->top /= offset;

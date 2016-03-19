@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CLASSEX_H
 #define CLASSEX_H
 
-#include <Windows.h>
+#include <windows.h>
 #include "tim.h"
 
 _TIM_BEGIN
@@ -41,9 +41,9 @@ public:
 		hbrBackground = HBRUSH(COLOR_WINDOW+1);
 		hCursor = LoadCursor(NULL, IDC_ARROW);
 		cbSize = sizeof(WNDCLASSEX);
-		hIcon = iconID==NULL?NULL:LoadIcon(hInst, MAKEINTRESOURCE(iconID));
+		hIcon = iconID == 0 ? NULL : LoadIcon(hInst, MAKEINTRESOURCE(iconID));
 		style = CS_OWNDC | CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS;
-		lpszMenuName = menuID==NULL?NULL:MAKEINTRESOURCE(menuID);
+		lpszMenuName = menuID == 0 ? NULL : MAKEINTRESOURCE(menuID);
 		lpfnWndProc = proc;
 	}
 	~ClassEx(){}

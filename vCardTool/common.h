@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -22,7 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#include <Windows.h>
+#include <windows.h>
+#include <algorithm>
 #include "Tim/Rect.h"
 
 HBITMAP GradienBitmap(HWND hWnd, COLORREF cr1, COLORREF cr2);

@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/navifirmex/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -22,12 +22,12 @@ using namespace _TIM;
 //========================================================================================================
 LRESULT CALLBACK LinkCtrl::LinkCtrlProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	LinkCtrl *pCtl = (LinkCtrl*)::GetWindowLongPtr(hWnd, GWL_USERDATA);
+	LinkCtrl *pCtl = (LinkCtrl*)::GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
 	return pCtl->runProc(hWnd, uMsg, wParam, lParam);
 }
 
-void LinkCtrl::create(HWND hwndStatic, TCHAR *link, COLORREF linkColor)
+void LinkCtrl::create(HWND hwndStatic, const TCHAR *link, COLORREF linkColor)
 {
 	_hWnd = hwndStatic;
 
@@ -110,7 +110,7 @@ void LinkCtrl::setCursor(HWND hWnd)
 	if (_hCursor == 0)
 		_hCursor = LoadCursor(NULL, IDC_HAND);
 
-	SetClassLong(hWnd, GCL_HCURSOR, (LONG)_hCursor);
+	SetClassLongPtr(hWnd, GCLP_HCURSOR, (LONG_PTR)_hCursor);
 }
 
 void LinkCtrl::OnPaint()

@@ -1,4 +1,4 @@
-/*
+Ôªø/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -54,7 +54,7 @@ BOOL DlgAbout::runProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 #endif
 			SetItemText(IDS_BUILT, buildTime);
 
-			buildTime = TEXT("√˚∆¨–°÷˙ ÷ v1.1 ");
+			buildTime = TEXT("ÂêçÁâáÂ∞èÂä©Êâã v1.1 ");
 #ifdef UNICODE
 			buildTime += TEXT("(UNICODE)");
 #else
@@ -93,7 +93,7 @@ BOOL DlgAbout::runProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if (HwndFromId(IDS_BUILT) == HWND(lParam))
 			SetTextColor(HDC(wParam), RGB(240, 240, 240));
 
-		return (BOOL)GetStockObject(NULL_BRUSH);
+		return GetStockObject(NULL_BRUSH) != NULL;
 
 	case WM_CLOSE:
 		destroy();

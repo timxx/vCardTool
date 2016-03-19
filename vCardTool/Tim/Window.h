@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _MY_WINDOW_H_
 #define _MY_WINDOW_H_
 
-#include <Windows.h>
+#include <windows.h>
 #include "tim.h"
 #include "TString.h"
 #include "Rect.h"
@@ -117,7 +117,7 @@ public:
 		int uMenuID = 0, LPVOID lpParam = 0)
 	{
 		return _hWnd = ::CreateWindow(lpClassName, lpWindowName, dwStyle, x, y, nWidth,\
-			nHeight, _parentWnd, (HMENU)uMenuID, _hinst, lpParam);
+			nHeight, _parentWnd, (HMENU)(UINT_PTR)uMenuID, _hinst, lpParam);
 	}
 
 	virtual HWND createEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle,
@@ -125,7 +125,7 @@ public:
 		int uMenuID = 0, LPVOID lpParam = 0)
 	{
 		return _hWnd = ::CreateWindowEx(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth,\
-			nHeight, _parentWnd, (HMENU)uMenuID, _hinst, lpParam);
+			nHeight, _parentWnd, (HMENU)(UINT_PTR)uMenuID, _hinst, lpParam);
 	}
 
 	inline virtual void destroy()		{	::DestroyWindow(_hWnd);		}
@@ -218,7 +218,7 @@ public:
 		int cOrientation = 0, int cWeight = FW_DONTCARE, DWORD bItalic = FALSE,
 		DWORD bUnderline = FALSE, DWORD bStrikeOut = FALSE, DWORD iCharSet = DEFAULT_CHARSET,
 		DWORD iOutPrecision = OUT_DEFAULT_PRECIS, DWORD iClipPrecision = CLIP_DEFAULT_PRECIS,
-		DWORD iQuality = DEFAULT_QUALITY, DWORD iPitchAndFamily = FF_DONTCARE, LPCTSTR pszFaceName = TEXT("ËÎÌå"))
+		DWORD iQuality = DEFAULT_QUALITY, DWORD iPitchAndFamily = FF_DONTCARE, LPCTSTR pszFaceName = TEXT("å®‹ä½“"))
 	{
 		return ::CreateFont(cHeight, cWeight, cEscapement, cOrientation,
 			cWeight, bItalic, bUnderline, bStrikeOut, iCharSet, iOutPrecision,

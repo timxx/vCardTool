@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //disable signed/unsigned mismatch
 #pragma warning(disable:4018)
 
-#include <Windows.h>
+#include <windows.h>
 
 #include "TString.h"
 
@@ -82,10 +82,11 @@ void TString::formatV(const TCHAR* fmt, va_list args)
 {
 	int nLength = _vsctprintf(fmt, args) + 1;
 
-	if (nLength > _Mysize)
-		resize(nLength);
-	//Èç¹ûµ±Ç°Ð¡ÓÚÄ¬ÈÏµÄ_BUF_SIZEÊ±this->_Bx._PtrÎª0
-	_vstprintf_s(this->_BUF_SIZE <= this->_Myres ? this->_Bx._Ptr : this->_Bx._Buf, nLength, fmt, args );
+	TCHAR *buffer = new TCHAR[nLength + 1];
+	_vstprintf_s(buffer, nLength, fmt, args);
+
+	assign(buffer);
+	delete [] buffer;
 }
 
 void TString::format(const TCHAR* fmt, ...)

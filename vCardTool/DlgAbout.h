@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Tim\dialog.h"
-#include "Tim\LinkCtrl.h"
+#include "Tim/Dialog.h"
+#include "Tim/LinkCtrl.h"
 
 using namespace _TIM;
 

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -23,23 +23,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace RegHelper
 {
-	/*×¢²áºó×ºÎªlpExtµÄÎÄ¼şÀàĞÍ
-	 *lpDesÎª¶ÔlpExtµÄËµÃ÷
-	 *exePathÎªÖ´ĞĞ¸ÃlpExtÎÄ¼şµÄ³ÌĞòÂ·¾¶
+	/*æ³¨å†Œåç¼€ä¸ºlpExtçš„æ–‡ä»¶ç±»å‹
+	 *lpDesä¸ºå¯¹lpExtçš„è¯´æ˜
+	 *exePathä¸ºæ‰§è¡Œè¯¥lpExtæ–‡ä»¶çš„ç¨‹åºè·¯å¾„
 	*/
-	bool RegisterFileType(LPTSTR lpExt, LPTSTR lpDes, LPTSTR exePath);
+	bool RegisterFileType(LPCTSTR lpExt, LPCTSTR lpDes, LPCTSTR exePath);
 
-	/*È¡Ïû×¢²álpExtÎÄ¼şÀàĞÍ*/
-	bool UnRegisterFileType(LPTSTR lpExt, LPTSTR lpDes);
+	/*å–æ¶ˆæ³¨å†ŒlpExtæ–‡ä»¶ç±»å‹*/
+	bool UnRegisterFileType(LPCTSTR lpExt, LPCTSTR lpDes);
 
-	//ÔÚhKeyRootÏÂ´´½¨×Ó¼ülpSubKey£¬²¢ÉèÖÃÆäÃûÎªlpValue£¬Êı¾İÎªlpData
-	bool CreateKey(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue, LPTSTR lpData);
+	//åœ¨hKeyRootä¸‹åˆ›å»ºå­é”®lpSubKeyï¼Œå¹¶è®¾ç½®å…¶åä¸ºlpValueï¼Œæ•°æ®ä¸ºlpData
+	bool CreateKey(HKEY hKeyRoot, LPCTSTR lpSubKey, LPCTSTR lpValue, LPCTSTR lpData);
 
-	//É¾³ıhKeyRootÏÂµÄ×Ó¼ülpSubKey£¬°üÀ¨Æä×Ó¼ü
-	bool DeleteKey(HKEY hKeyRoot, LPTSTR lpSubKey);
+	//åˆ é™¤hKeyRootä¸‹çš„å­é”®lpSubKeyï¼ŒåŒ…æ‹¬å…¶å­é”®
+	bool DeleteKey(HKEY hKeyRoot, LPCTSTR lpSubKey);
 
-	bool DeleteKeyValue(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue);
+	bool DeleteKeyValue(HKEY hKeyRoot, LPCTSTR lpSubKey, LPCTSTR lpValue);
 
-	bool IsKeyExists(HKEY hKeyRoot, LPTSTR lpValueName);
+	bool IsKeyExists(HKEY hKeyRoot, LPCTSTR lpValueName);
 }
-#endif REG_HELPER_H
+#endif // REG_HELPER_H

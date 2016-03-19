@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using namespace _TIM;
 
-SException::SException(EXCEPTION_POINTERS *pExp)
+SException::SException(EXCEPTION_POINTERS *pExp) throw()
 {
 	_addr = pExp->ExceptionRecord->ExceptionAddress;
 	_code = pExp->ExceptionRecord->ExceptionCode;
@@ -32,7 +32,9 @@ SException::SException(EXCEPTION_POINTERS *pExp)
 
 void SException::install() throw()
 {
+#if !defined(__GNUC__)
 	_set_se_translator(translator);
+#endif
 }
 
 const char* SException::what() const throw()
@@ -60,23 +62,23 @@ void SException::exceptioninfo(unsigned int code)
 	switch(code)
 	{
 	case EXCEPTION_ACCESS_VIOLATION:
-		_what = "·ÃÎÊÎ¥¹æ";
+		_what = "è®¿é—®è¿è§„";
 		break;
 
 	case EXCEPTION_STACK_OVERFLOW:
-		_what = "Õ»Òç³ö";
+		_what = "æ ˆæº¢å‡º";
 		break;
 
 	case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
-		_what = "Êı×éÔ½½ç";
+		_what = "æ•°ç»„è¶Šç•Œ";
 		break;
 
 	case EXCEPTION_FLT_DIVIDE_BY_ZERO:
 	case EXCEPTION_INT_DIVIDE_BY_ZERO:
-		_what = "±»³ıÊıÎª0";
+		_what = "è¢«é™¤æ•°ä¸º0";
 		break;
 
 	default:
-		_what = "Î´ÁĞ¾Ù";
+		_what = "æœªåˆ—ä¸¾";
 	}
 }

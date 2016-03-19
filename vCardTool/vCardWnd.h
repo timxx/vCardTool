@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -23,19 +23,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _VCARD_WND_H_
 //////////////////////////////////////////////////////////////////////////
 #include <vector>
-#include "Tim\Window.h"
+#include "Tim/Window.h"
 #include "resource.h"
 #include "vCard.h"
-#include "Tim\CommonCtrls.h"
+#include "Tim/CommonCtrls.h"
 //////////////////////////////////////////////////////////////////////////
 //========================================================================
-#define DEF_CXWND		480	//´°¿ÚÄ¬ÈÏ´óĞ¡
+#define DEF_CXWND		480	//çª—å£é»˜è®¤å¤§å°
 #define DEF_CYWND		500
 
-#define EDIT_WIDTH		100	//±à¼­¿ò¿í\¸ß
+#define EDIT_WIDTH		100	//ç¼–è¾‘æ¡†å®½\é«˜
 #define EDIT_HEIGHT		20
 
-#define EDIT_SPACE		10	//±à¼­¿òÖ®¼äµÄ¿ÕÏ¶
+#define EDIT_SPACE		10	//ç¼–è¾‘æ¡†ä¹‹é—´çš„ç©ºéš™
 
 #define TIMER_INFO_ID	1
 //========================================================================
@@ -45,7 +45,7 @@ using namespace std;
 class vCardWnd : public Window
 {
 public:
-	vCardWnd():_hFontChild(NULL), _strCaption(TEXT("ÃûÆ¬Ğ¡ÖúÊÖ")),
+	vCardWnd():_hFontChild(NULL), _strCaption(TEXT("åç‰‡å°åŠ©æ‰‹")),
 		_hbmp(NULL), _hdcMem(NULL),_fDrew(false),
 		_hThread(INVALID_HANDLE_VALUE), _pszFile(0),
 		_uTimeElapsed(0)
@@ -75,27 +75,27 @@ private:
 	void doOpen();
 	void doLBSelChange();
 
-	//ÔÚ×´Ì¬À¸ÉÏÏÔÊ¾ĞÅÏ¢
+	//åœ¨çŠ¶æ€æ ä¸Šæ˜¾ç¤ºä¿¡æ¯
 	void ShowInfo(const TString &infoStr);
 
-	//¶ÁÈ¡Ò»¸öNBUÎÄ¼ş
+	//è¯»å–ä¸€ä¸ªNBUæ–‡ä»¶
 	bool OpenNbuFile(const TString &filePath);
-	//½âÎöNBUÖĞµÄvCardÄÚÈİ
-	//²¢ÏÔÊ¾µ½list box
+	//è§£æNBUä¸­çš„vCardå†…å®¹
+	//å¹¶æ˜¾ç¤ºåˆ°list box
 	void AnalyseNbu(const char *buf, DWORD dwSize);
 
 	bool IsvCardBegin(const char *buf);	//BEGIN:VCARD
 	bool IsvCardEnd(const char *buf);	//END:VCARD
 
-	bool OpenVcfFile(const TString &filePath);	//¶ÁÈ¡vCardÎÄ¼ş
-	void SaveVcfFile(bool fAll = false);		//±£´ævCardÎÄ¼ş
-	bool WriteVcfFile(const TString &path, const string &buf);		//Ğ´vCardÎÄ¼ş
+	bool OpenVcfFile(const TString &filePath);	//è¯»å–vCardæ–‡ä»¶
+	void SaveVcfFile(bool fAll = false);		//ä¿å­˜vCardæ–‡ä»¶
+	bool WriteVcfFile(const TString &path, const string &buf);		//å†™vCardæ–‡ä»¶
 
-	TString SelectFolder();	//Ñ¡ÔñÒ»¸öÎÄ¼ş¼Ğ
-	TString SelectFile(const TString &strDefName);	//Ñ¡Ôñ¸ö±£´æµÄÎÄ¼şÂ·¾¶
+	TString SelectFolder();	//é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶å¤¹
+	TString SelectFile(const TString &strDefName);	//é€‰æ‹©ä¸ªä¿å­˜çš„æ–‡ä»¶è·¯å¾„
 
-	static TString GetShowName(const vCard &vc);		//ÓÉvCard·µ»ØÒ»¸ö·Ç¿ÕÃû×Ö
-	void MakeValidPathName(TString &what);		//È¥³ıÂ·¾¶·Ç·¨×Ö·û
+	static TString GetShowName(const vCard &vc);		//ç”±vCardè¿”å›ä¸€ä¸ªéç©ºåå­—
+	void MakeValidPathName(TString &what);		//å»é™¤è·¯å¾„éæ³•å­—ç¬¦
 
 	void PopupRKeyMenu();
 
@@ -107,7 +107,7 @@ private:
 
 	void FiltervCard();
 	bool vCardContain(const vCard &vc, TString &key);
-	void ClearRight();	//Çå¿ÕÓÒ±ßÏÔÊ¾µÄ
+	void ClearRight();	//æ¸…ç©ºå³è¾¹æ˜¾ç¤ºçš„
 private:
 	static TString _clsName;
 	TString _strCaption;
@@ -119,25 +119,25 @@ private:
 	ListBox _vCardList;
 	StatusBar _status;
 
-	Edit _lnameEdit;	//ĞÕ
-	Edit _fnameEdit;	//Ãû
-	Edit _fnEdit;		//ÕıÊ½ĞÕÃû
-	Edit _nnEdit;		//êÇ³Æ
-	Edit _telEdit;		//ºÅÂë
-	Edit _noteEdit;		//×¢ÊÍ
-	Edit _mailEdit;		//µç×ÓÓÊ¼ş
-	Edit _titleEdit;	//Ö°Îñ
-	Edit _urlEdit;		//ÍøÖ·
-	Edit _bdEdit;		//ÉúÈÕ
-	Edit _orgEdit;		//¹«Ë¾
-	Edit _addrEdit;		//Í¨Ñ¶µØÖ·
+	Edit _lnameEdit;	//å§“
+	Edit _fnameEdit;	//å
+	Edit _fnEdit;		//æ­£å¼å§“å
+	Edit _nnEdit;		//æ˜µç§°
+	Edit _telEdit;		//å·ç 
+	Edit _noteEdit;		//æ³¨é‡Š
+	Edit _mailEdit;		//ç”µå­é‚®ä»¶
+	Edit _titleEdit;	//èŒåŠ¡
+	Edit _urlEdit;		//ç½‘å€
+	Edit _bdEdit;		//ç”Ÿæ—¥
+	Edit _orgEdit;		//å…¬å¸
+	Edit _addrEdit;		//é€šè®¯åœ°å€
 
-	Edit _edFilter;		//É¸Ñ¡±à¼­¿ò
-	Static _sInfo;		//ÏÔÊ¾ÃûÆ¬ÌõÊı
+	Edit _edFilter;		//ç­›é€‰ç¼–è¾‘æ¡†
+	Static _sInfo;		//æ˜¾ç¤ºåç‰‡æ¡æ•°
 
 	HDC _hdcMem;		//
 	HBITMAP _hbmp;		//
-	bool _fDrew;		//±ê¼ÇÊÇ·ñÒÑ¾­»­¹ı
+	bool _fDrew;		//æ ‡è®°æ˜¯å¦å·²ç»ç”»è¿‡
 
 	HANDLE _hThread;
 	CRITICAL_SECTION _cs;

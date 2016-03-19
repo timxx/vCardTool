@@ -1,4 +1,4 @@
-/*
+﻿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -57,7 +57,7 @@ BOOL CALLBACK Dialog::dlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
 
 		default :
 		{
-			Dialog *pDlg = reinterpret_cast<Dialog *>(::GetWindowLongPtr(hDlg, GWL_USERDATA));
+			Dialog *pDlg = reinterpret_cast<Dialog *>(::GetWindowLongPtr(hDlg, GWLP_USERDATA));
 
 			if (!pDlg)	return FALSE;
 

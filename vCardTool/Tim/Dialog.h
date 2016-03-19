@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //////////////////////////////////////////////////////////////////////////
 #pragma once
 //////////////////////////////////////////////////////////////////////////
-#include "window.h"
+#include "Window.h"
 
 _TIM_BEGIN
 
@@ -80,13 +80,13 @@ protected:
 		return ::SendDlgItemMessage(_hWnd, id, uMsg, wParam, lParam);
 	}
 
-	HWND HwndFromId(int id)	{	return ::GetDlgItem(_hWnd, id);		}	//ÓÉ¿Ø¼şID·µ»Ø¾ä±ú
+	HWND HwndFromId(int id)	{	return ::GetDlgItem(_hWnd, id);		}	//ç”±æ§ä»¶IDè¿”å›å¥æŸ„
 
-	void ShowCtrl(int id)	{	::ShowWindow(HwndFromId(id), SW_SHOW);	}	//ÏÔÊ¾¿Ø¼ş
-	void HideCtrl(int id)	{	::ShowWindow(HwndFromId(id), SW_HIDE);	}	//Òş²Ø¿Ø¼ş
+	void ShowCtrl(int id)	{	::ShowWindow(HwndFromId(id), SW_SHOW);	}	//æ˜¾ç¤ºæ§ä»¶
+	void HideCtrl(int id)	{	::ShowWindow(HwndFromId(id), SW_HIDE);	}	//éšè—æ§ä»¶
 
-	void EnableCtrl(int id)	{	::EnableWindow(HwndFromId(id), TRUE);	}	//¿Ø¼şÓĞĞ§
-	void DisableCtrl(int id){	::EnableWindow(HwndFromId(id), FALSE);	}	//¿Ø¼şÎŞĞ§
+	void EnableCtrl(int id)	{	::EnableWindow(HwndFromId(id), TRUE);	}	//æ§ä»¶æœ‰æ•ˆ
+	void DisableCtrl(int id){	::EnableWindow(HwndFromId(id), FALSE);	}	//æ§ä»¶æ— æ•ˆ
 
 	void CheckButton(int id)	{	::CheckDlgButton(_hWnd, id, BST_CHECKED);	}
 	void UnCheckButton(int id)	{	::CheckDlgButton(_hWnd, id, BST_UNCHECKED);	}
@@ -97,7 +97,7 @@ protected:
 	BOOL CheckRadio(int nIDFirstButton, int nIDLastButton, int nIDCheckButton)
 		{	return ::CheckRadioButton(_hWnd, nIDFirstButton, nIDLastButton, nIDCheckButton);	}
 
-	void FocusCtrl(int id)	{	::SetFocus(HwndFromId(id));				}	//Ê¹¿Ø¼şÈ¡µÃ½¹µã
+	void FocusCtrl(int id)	{	::SetFocus(HwndFromId(id));				}	//ä½¿æ§ä»¶å–å¾—ç„¦ç‚¹
 
 	TString GetItemText(int id);
 	void	SetItemText(int id, const TString &Str)	{	::SetWindowText(HwndFromId(id), Str.c_str());	}
@@ -107,8 +107,8 @@ protected:
 	LPVOID _pData;
 
 private:
-	bool _fModeless;	//µ±Ç°¶Ô»°ÊÇÎŞÄ£Ê½»¹ÊÇÄ£Ê½
-	INT_PTR _nResult;//´´½¨Ä£Ê½¶Ô»°¿ò·µ»ØµÄ
+	bool _fModeless;	//å½“å‰å¯¹è¯æ˜¯æ— æ¨¡å¼è¿˜æ˜¯æ¨¡å¼
+	INT_PTR _nResult;//åˆ›å»ºæ¨¡å¼å¯¹è¯æ¡†è¿”å›çš„
 
 	bool _isCreated;
 };

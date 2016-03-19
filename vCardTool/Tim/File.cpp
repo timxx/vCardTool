@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <Shlwapi.h>
+#include <shlwapi.h>
 
 #include "File.h"
 #include "TString.h"
@@ -96,7 +96,7 @@ DWORD File::GetFileSize(const std::wstring &file, LPDWORD pdwHigh)
 {
 	HANDLE hFile = CreateFileW(file.c_str(), GENERIC_ALL,
 		FILE_SHARE_READ, NULL,
-		OPEN_EXISTING, NULL, NULL);
+		OPEN_EXISTING, 0, NULL);
 
 	if (hFile == INVALID_HANDLE_VALUE){
 		return INVALID_FILE_SIZE;
@@ -166,7 +166,7 @@ std::wstring File::GetFileName(const std::wstring &file)
 		}
 	}
 
-	//Èô×îºóÒ»¸ö×Ö·ûÎª'\'
+	//è‹¥æœ€åä¸€ä¸ªå­—ç¬¦ä¸º'\'
 	if (pos + 1 >= (int)str.length()){
 		return L"";
 	}
@@ -176,8 +176,8 @@ std::wstring File::GetFileName(const std::wstring &file)
 
 bool File::MakeDir(const std::wstring &folder)
 {
-	if (Exists(folder))	//²»´¦Àí×îºóÒ»¸ö×Ö·ûÊÇ\µÄÇé¿ö
-		return true;	//´ËÊ±ËäÈ»³É¹¦´´½¨ÁË£¬µ«·µ»Øfalse
+	if (Exists(folder))	//ä¸å¤„ç†æœ€åä¸€ä¸ªå­—ç¬¦æ˜¯\çš„æƒ…å†µ
+		return true;	//æ­¤æ—¶è™½ç„¶æˆåŠŸåˆ›å»ºäº†ï¼Œä½†è¿”å›false
 
 	int pos  = folder.rfind(L'\\');
 	if (pos != std::wstring::npos)

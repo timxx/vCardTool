@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -17,17 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 //////////////////////////////////////////////////////////////////////////
-#include <Windowsx.h>
-#include <Shlwapi.h>
+#include <windowsx.h>
+#include <shlwapi.h>
 #include <shlobj.h>
 
 #include "vCardWnd.h"
-#include "Tim\ClassEx.h"
+#include "Tim/ClassEx.h"
 #include "DlgAbout.h"
-#include "Tim\SException.h"
+#include "Tim/SException.h"
 #include "common.h"
 #include "RegHelper.h"
-#include "Tim\File.h"
+#include "Tim/File.h"
 //////////////////////////////////////////////////////////////////////////
 #pragma comment(lib, "shlwapi.lib")
 //////////////////////////////////////////////////////////////////////////
@@ -85,7 +85,7 @@ LRESULT CALLBACK vCardWnd::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM l
 		}
 
 	default:
-		return ((vCardWnd *)::GetWindowLongPtr(hWnd, GWL_USERDATA))->runProc(hWnd, uMsg, wParam, lParam);
+		return ((vCardWnd *)::GetWindowLongPtr(hWnd, GWLP_USERDATA))->runProc(hWnd, uMsg, wParam, lParam);
 	}
 
 	return 0;
@@ -242,7 +242,7 @@ void vCardWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	_edFilter.init(getHinst(), getSelf());
 	_edFilter.create(TEXT(""));
 
-	_hFontChild = CreateFont(13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TEXT("ËÎÌå"));
+	_hFontChild = CreateFont(13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TEXT("å®‹ä½“"));
 
 	_vCardList.setFont(_hFontChild);
 	_lnameEdit.setFont(_hFontChild);
@@ -265,7 +265,7 @@ void vCardWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	int aWidths[] = {DEF_CXWND*3/4, -1};
 	_status.SetParts(2, aWidths);
 
-	_status.setText(1, TEXT("\tÃûÆ¬Ğ¡ÖúÊÖ v1.1"));
+	_status.setText(1, TEXT("\tåç‰‡å°åŠ©æ‰‹ v1.1"));
 }
 //========================================================================
 void vCardWnd::OnSize(int type, int nWidth, int nHeigth)
@@ -332,7 +332,7 @@ void vCardWnd::OnPaint()
 
 	hdc = BeginPaint(_hWnd, &ps);
 
-	if (!_fDrew)	//´°¿Ú´óĞ¡ÊÇ¹Ì¶¨µÄ£¬ÕâÑù¿ÉÒÔ±ÜÃâÃ¿´Î¶¼»­Ò»´Î±êÌâ
+	if (!_fDrew)	//çª—å£å¤§å°æ˜¯å›ºå®šçš„ï¼Œè¿™æ ·å¯ä»¥é¿å…æ¯æ¬¡éƒ½ç”»ä¸€æ¬¡æ ‡é¢˜
 	{
 		_hdcMem = CreateCompatibleDC(hdc);
 
@@ -343,76 +343,76 @@ void vCardWnd::OnPaint()
 
 		SelectObject(_hdcMem, _hFontChild);
 
-		GetTextExtentPoint(_hdcMem, TEXT("×ÖÌåInfo"), lstrlen(TEXT("×ÖÌåInfo")), &size);
+		GetTextExtentPoint(_hdcMem, TEXT("å­—ä½“Info"), lstrlen(TEXT("å­—ä½“Info")), &size);
 
 		_lnameEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
 
-		TextOut(_hdcMem, 5, pt.y, TEXT("ÃûÆ¬ÁĞ±í"), lstrlen(TEXT("ÃûÆ¬ÁĞ±í")));
+		TextOut(_hdcMem, 5, pt.y, TEXT("åç‰‡åˆ—è¡¨"), lstrlen(TEXT("åç‰‡åˆ—è¡¨")));
 
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("ĞÕ"), lstrlen(TEXT("ĞÕ")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("å§“"), lstrlen(TEXT("å§“")));
 
 		pt.x +=  EDIT_WIDTH + 10;
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("Ãû"), lstrlen(TEXT("Ãû")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("å"), lstrlen(TEXT("å")));
 
 		_fnEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("ÕıÊ½ĞÕÃû"), lstrlen(TEXT("ÕıÊ½ĞÕÃû")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("æ­£å¼å§“å"), lstrlen(TEXT("æ­£å¼å§“å")));
 
 		pt.x +=  EDIT_WIDTH + EDIT_SPACE;
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("êÇ³Æ"), lstrlen(TEXT("êÇ³Æ")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("æ˜µç§°"), lstrlen(TEXT("æ˜µç§°")));
 
 		_telEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("ºÅÂë"), lstrlen(TEXT("ºÅÂë")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("å·ç "), lstrlen(TEXT("å·ç ")));
 
 		_noteEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("×¢ÊÍ"), lstrlen(TEXT("×¢ÊÍ")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("æ³¨é‡Š"), lstrlen(TEXT("æ³¨é‡Š")));
 
 		_mailEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("µç×ÓÓÊ¼ş"), lstrlen(TEXT("µç×ÓÓÊ¼ş")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("ç”µå­é‚®ä»¶"), lstrlen(TEXT("ç”µå­é‚®ä»¶")));
 
 		_bdEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("ÉúÈÕ"), lstrlen(TEXT("ÉúÈÕ")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("ç”Ÿæ—¥"), lstrlen(TEXT("ç”Ÿæ—¥")));
 
 		_addrEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("Í¨Ñ¶µØÖ·"), lstrlen(TEXT("Í¨Ñ¶µØÖ·")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("é€šè®¯åœ°å€"), lstrlen(TEXT("é€šè®¯åœ°å€")));
 
 		_urlEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("ÍøÖ·"), lstrlen(TEXT("ÍøÖ·")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("ç½‘å€"), lstrlen(TEXT("ç½‘å€")));
 
 		_orgEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("¹«Ë¾"), lstrlen(TEXT("¹«Ë¾")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("å…¬å¸"), lstrlen(TEXT("å…¬å¸")));
 
 		_titleEdit.GetWindowRect(&rect);
 		pt.x = rect.left;
 		pt.y = rect.top - 2 - size.cy;
 		ScreenToClient(&pt);
-		TextOut(_hdcMem, pt.x, pt.y, TEXT("Ö°Îñ"), lstrlen(TEXT("Ö°Îñ")));
+		TextOut(_hdcMem, pt.x, pt.y, TEXT("èŒåŠ¡"), lstrlen(TEXT("èŒåŠ¡")));
 
 		_fDrew = true;
 	}
@@ -454,8 +454,8 @@ void vCardWnd::OnCommand(int id, HWND hwndCtl, UINT uNotifyCode)
 		break;
 
 	case IDM_CLEAR:
-		if (msgBox(TEXT("ÕæµÄÒªÇå¿Õµ±Ç°ËùÓĞÃûÆ¬Âğ£¿"),
-			TEXT("ÇëÈ·ÈÏ"),
+		if (msgBox(TEXT("çœŸçš„è¦æ¸…ç©ºå½“å‰æ‰€æœ‰åç‰‡å—ï¼Ÿ"),
+			TEXT("è¯·ç¡®è®¤"),
 			MB_ICONQUESTION | MB_YESNO) == IDYES)
 		{
 			_vCardList.ResetContent();
@@ -475,8 +475,8 @@ void vCardWnd::OnCommand(int id, HWND hwndCtl, UINT uNotifyCode)
 		break;
 
 	case IDM_HELP:
-		msgBox(TEXT("¶î£¬¹¦ÄÜÍ¦ÉÙµÄ£¬¾Í²»Ğ´°ïÖúÁË\r\n")
-			TEXT("ÕæÓĞÎÊÌâ¿ÉÒÔÁªÏµÎÒ ^_^"), _strCaption, MB_ICONINFORMATION);
+		msgBox(TEXT("é¢ï¼ŒåŠŸèƒ½æŒºå°‘çš„ï¼Œå°±ä¸å†™å¸®åŠ©äº†\r\n")
+			TEXT("çœŸæœ‰é—®é¢˜å¯ä»¥è”ç³»æˆ‘ ^_^"), _strCaption, MB_ICONINFORMATION);
 		break;
 
 	case IDM_REGISTER:
@@ -518,7 +518,7 @@ void vCardWnd::OnDropFiles(HDROP hDrop)
 			}else if(StrCmpI(ext, TEXT(".vcf"))==0){
 				OpenVcfFile(filePath);
 			}else{
-				ShowInfo(TEXT("\tÇëÑ¡Ôñ*.vcf¡¢*.nbuÎÄ¼ş£¡"));
+				ShowInfo(TEXT("\tè¯·é€‰æ‹©*.vcfã€*.nbuæ–‡ä»¶ï¼"));
 			}
 		}
 
@@ -559,11 +559,11 @@ void vCardWnd::doOpen()
 	ofn.hwndOwner = getSelf();
 	ofn.lpstrFile = filePath;
 	ofn.nMaxFile = MAX_PATH*50;
-	ofn.lpstrTitle = TEXT("ÇëÑ¡ÔñÖ§³ÖµÄÎÄ¼ş");
+	ofn.lpstrTitle = TEXT("è¯·é€‰æ‹©æ”¯æŒçš„æ–‡ä»¶");
 	ofn.lpstrFilter = 
-		TEXT("vCard¡¢NBUÎÄ¼ş(*.vcf;*.nbu)\0*.vcf;*.nbu\0")
-		TEXT("vCardÎÄ¼ş(*.vcf)\0*.vcf\0")
-		TEXT("NOKIA nbuÎÄ¼ş(*.nbu)\0*.nbu\0\0");
+		TEXT("vCardã€NBUæ–‡ä»¶(*.vcf;*.nbu)\0*.vcf;*.nbu\0")
+		TEXT("vCardæ–‡ä»¶(*.vcf)\0*.vcf\0")
+		TEXT("NOKIA nbuæ–‡ä»¶(*.nbu)\0*.nbu\0\0");
 
 	if (!GetOpenFileName(&ofn))
 		return ;
@@ -620,31 +620,35 @@ bool vCardWnd::OpenNbuFile(const TString &filePath)
 {
 	HANDLE hFile = INVALID_HANDLE_VALUE;
 	bool fOk = false;
+	char *buf = NULL;
 
-	hFile = CreateFile(filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL,
-		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	do
+	{
+		hFile = CreateFile(filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL,
+			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-	if (hFile == INVALID_HANDLE_VALUE)
-		goto _exit;
+		if (hFile == INVALID_HANDLE_VALUE)
+			break;
 
-	DWORD dwFileSize = GetFileSize(hFile, NULL);
+		DWORD dwFileSize = GetFileSize(hFile, NULL);
 
-	if (dwFileSize < 1)
-		goto _exit;
+		if (dwFileSize < 1)
+			break;
 
-	char *buf = new char[dwFileSize+1];
-	DWORD dwRead = 0;
+		buf = new char[dwFileSize + 1];
+		DWORD dwRead = 0;
 
-	SecureZeroMemory(buf, dwFileSize+1);
+		SecureZeroMemory(buf, dwFileSize+1);
 
-	if (!ReadFile(hFile, buf, dwFileSize, &dwRead, NULL))
-		goto _exit;
+		if (!ReadFile(hFile, buf, dwFileSize, &dwRead, NULL))
+			break;
 
-	AnalyseNbu(buf, dwFileSize);
+		AnalyseNbu(buf, dwFileSize);
 
-	fOk = true;
+		fOk = true;
+	} while (0);
 
-_exit:
+
 	if (hFile){
 		CloseHandle(hFile);
 	}
@@ -755,43 +759,47 @@ bool vCardWnd::OpenVcfFile(const TString &filePath)
 {
 	HANDLE hFile = INVALID_HANDLE_VALUE;
 	bool fOk = false;
+	char *buf = NULL;
 
-	hFile = CreateFile(filePath, GENERIC_READ, FILE_SHARE_READ, NULL,
-		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-	if (hFile == INVALID_HANDLE_VALUE)
-		goto _exit;
-
-	DWORD dwFileSize = GetFileSize(hFile, NULL);
-
-	if (dwFileSize < 1)
-		goto _exit;
-
-	char *buf = new char[dwFileSize+1];
-	DWORD dwRead = 0;
-
-	SecureZeroMemory(buf, dwFileSize+1);
-
-	if (!ReadFile(hFile, buf, dwFileSize, &dwRead, NULL))
-		goto _exit;
-
+	do
 	{
-		vCard card(buf);
+		hFile = CreateFile(filePath, GENERIC_READ, FILE_SHARE_READ, NULL,
+			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-		EnterCriticalSection(&_cs);
+		if (hFile == INVALID_HANDLE_VALUE)
+			break;
 
-		_vCard.push_back(card);
-		//_vCardList.AddString(card.name());
+		DWORD dwFileSize = GetFileSize(hFile, NULL);
 
-		LeaveCriticalSection(&_cs);
-	}
+		if (dwFileSize < 1)
+			break;
 
-	fOk = true;
+		buf = new char[dwFileSize+1];
+		DWORD dwRead = 0;
 
-_exit:
+		SecureZeroMemory(buf, dwFileSize+1);
+
+		if (!ReadFile(hFile, buf, dwFileSize, &dwRead, NULL))
+			break;
+
+		{
+			vCard card(buf);
+
+			EnterCriticalSection(&_cs);
+
+			_vCard.push_back(card);
+			//_vCardList.AddString(card.name());
+
+			LeaveCriticalSection(&_cs);
+		}
+
+		fOk = true;
+	} while (0);
+
 	if (hFile){
 		CloseHandle(hFile);
 	}
+
 	if (buf){
 		delete [] buf;
 	}
@@ -906,14 +914,14 @@ TString vCardWnd::SelectFile(const TString &strDefName)
 	ofn.hwndOwner	= getSelf();
 	ofn.lpstrFile	= filePath;
 	ofn.nMaxFile	= MAX_PATH;
-	ofn.lpstrTitle	= TEXT("±£´ævCardÎÄ¼ş");
-	ofn.lpstrFilter = TEXT("vCardÎÄ¼ş(*.vcf)\0*.vcf\0\0");
+	ofn.lpstrTitle	= TEXT("ä¿å­˜vCardæ–‡ä»¶");
+	ofn.lpstrFilter = TEXT("vCardæ–‡ä»¶(*.vcf)\0*.vcf\0\0");
 	ofn.lpstrDefExt = TEXT("vcf");
 
 	if (!GetSaveFileName(&ofn))
 	{
 		if (CommDlgExtendedError() != 0){
-			msgBox(TEXT("±£´æÎÄ¼şÊ§°Ü"), _strCaption, MB_ICONERROR);
+			msgBox(TEXT("ä¿å­˜æ–‡ä»¶å¤±è´¥"), _strCaption, MB_ICONERROR);
 		}
 		return TEXT("");
 	}
@@ -928,7 +936,7 @@ TString vCardWnd::SelectFolder()
 	ITEMIDLIST *pidl = {0};       
 
 	bi.hwndOwner		 =   _hWnd;       
-	bi.lpszTitle		 =   TEXT("ÇëÑ¡ÔñÒª±£´æµ½µÄÎÄ¼ş¼Ğ");       
+	bi.lpszTitle		 =   TEXT("è¯·é€‰æ‹©è¦ä¿å­˜åˆ°çš„æ–‡ä»¶å¤¹");       
 	bi.ulFlags			 =   BIF_RETURNONLYFSDIRS | BIF_EDITBOX | BIF_NEWDIALOGSTYLE;       
 
 	pidl = ::SHBrowseForFolder(&bi);
@@ -978,7 +986,7 @@ TString vCardWnd::GetShowName(const vCard &vc)
 			if(vc.nickname().empty())
 			{
 				if (vc.tel().empty())
-					name = TEXT("Î´Öª");
+					name = TEXT("æœªçŸ¥");
 				else
 					name = vc.tel();
 			}
@@ -1002,7 +1010,7 @@ TString vCardWnd::GetShowName(const vCard &vc)
 //========================================================================
 void vCardWnd::MakeValidPathName(TString &what)
 {
-	//È¥µô¿Õ¸ñ
+	//å»æ‰ç©ºæ ¼
 	what.trim();
 
 	while (1)
@@ -1042,25 +1050,25 @@ void vCardWnd::HandleFile(const TCHAR *filePaths)
 	while(*p++)
 		;
 
-	if (*p == NULL) //Ö»Ñ¡ÁËÒ»¸öÎÄ¼ş
+	if (*p == 0) //åªé€‰äº†ä¸€ä¸ªæ–‡ä»¶
 	{
 		TCHAR *ext = PathFindExtension(filePaths);
 		if (ext)
 		{
 			if(lstrcmpi(ext, TEXT(".nbu")) == 0){
 				if (!OpenNbuFile(filePaths)){
-					msgBox(TEXT("´ò¿ªÎÄ¼şÊ§°ÜÁË£¡"), _strCaption, MB_ICONERROR);
+					msgBox(TEXT("æ‰“å¼€æ–‡ä»¶å¤±è´¥äº†ï¼"), _strCaption, MB_ICONERROR);
 				}
 			}else if(lstrcmpi(ext, TEXT(".vcf")) == 0){
 				if (!OpenVcfFile(filePaths)){
-					msgBox(TEXT("´ò¿ªÎÄ¼şÊ§°ÜÁË£¡"), _strCaption, MB_ICONERROR);
+					msgBox(TEXT("æ‰“å¼€æ–‡ä»¶å¤±è´¥äº†ï¼"), _strCaption, MB_ICONERROR);
 				}
 			}else{
-				msgBox(TEXT("ÄúÖ»ÄÜÑ¡Ôñ*.vcf¡¢*.nbuÎÄ¼ş£¡"), _strCaption, MB_ICONINFORMATION);
+				msgBox(TEXT("æ‚¨åªèƒ½é€‰æ‹©*.vcfã€*.nbuæ–‡ä»¶ï¼"), _strCaption, MB_ICONINFORMATION);
 			}
 		}
 	}
-	else	//Ñ¡ÔñÁË¶à¸öÎÄ¼ş
+	else	//é€‰æ‹©äº†å¤šä¸ªæ–‡ä»¶
 	{
 		int nErrFiles = 0;
 		while (*p)
@@ -1073,14 +1081,14 @@ void vCardWnd::HandleFile(const TCHAR *filePaths)
 			if (ext)
 			{
 				TString info;
-				info.format(TEXT("ÕıÔÚ¶ÁÈ¡ %s ..."), szFile);
+				info.format(TEXT("æ­£åœ¨è¯»å– %s ..."), szFile);
 				ShowInfo(info);
 
 				if(lstrcmpi(ext, TEXT(".nbu")) == 0){
 					if (!OpenNbuFile(szFile))
 					{
 						TString info = szFile;
-						info += TEXT(" ¶ÁÈ¡Ê§°Ü");
+						info += TEXT(" è¯»å–å¤±è´¥");
 						ShowInfo(info);
 
 						nErrFiles ++;
@@ -1089,13 +1097,13 @@ void vCardWnd::HandleFile(const TCHAR *filePaths)
 					if (!OpenVcfFile(szFile))
 					{
 						TString info = szFile;
-						info += TEXT(" ¶ÁÈ¡Ê§°Ü");
+						info += TEXT(" è¯»å–å¤±è´¥");
 						ShowInfo(info);
 
 						nErrFiles++;
 					}
 				}else{
-					ShowInfo(TEXT("ÄúÖ»ÄÜÑ¡Ôñ*.vcf¡¢*.nbuÎÄ¼ş£¡"));
+					ShowInfo(TEXT("æ‚¨åªèƒ½é€‰æ‹©*.vcfã€*.nbuæ–‡ä»¶ï¼"));
 				}
 			}
 
@@ -1108,7 +1116,7 @@ void vCardWnd::HandleFile(const TCHAR *filePaths)
 		if (nErrFiles > 0)
 		{
 			TString strInfo;
-			strInfo.format(TEXT("¹²%d¸öÎÄ¼ş¶ÁÈ¡Ê§°Ü£¡"), nErrFiles);
+			strInfo.format(TEXT("å…±%dä¸ªæ–‡ä»¶è¯»å–å¤±è´¥ï¼"), nErrFiles);
 			msgBox(strInfo, _strCaption, MB_ICONERROR);
 		}
 	}
@@ -1138,11 +1146,11 @@ void vCardWnd::OpenFromCmd(LPCTSTR lpCmd)
 	int i = 0;
 	if (lstrcmp(lpCmd, TEXT(""))!=0)
 	{
-		//È¥µô¿Õ¸ñºÍÒıºÅ£¬Èç¹û´æÔÚµÄ»°
+		//å»æ‰ç©ºæ ¼å’Œå¼•å·ï¼Œå¦‚æœå­˜åœ¨çš„è¯
 		while (*lpCmd == ' ' || *lpCmd == '\"')
 			lpCmd++;
 
-		while (*lpCmd && *lpCmd!='\"') //²ÎÊıÀïÓĞÒıºÅÊ±ÒªÈ¥µô
+		while (*lpCmd && *lpCmd!='\"') //å‚æ•°é‡Œæœ‰å¼•å·æ—¶è¦å»æ‰
 			filePath[i++] = *lpCmd++;
 
 		filePath[i] = '\0';
@@ -1168,62 +1176,62 @@ void vCardWnd::RegisteFileType(bool fRegister /* = true */)
 	{
 		if (!IsProcessRunAsAdmin())
 		{
-			ShowInfo(TEXT("²Ù×÷Ğè¹ÜÀíÔ±È¨ÏŞ"));
+			ShowInfo(TEXT("æ“ä½œéœ€ç®¡ç†å‘˜æƒé™"));
 
-			msgBox(TEXT("ÇëÄúÖØÆô³ÌĞò²¢ÒÔ¹ÜÀíÔ±È¨ÏŞÔËĞĞ³ÌĞò£¬È»ºóÔÙ²Ù×÷¡£\r\n")
-				TEXT("ÌáÊ¾£ºÊó±êÓÒ¼ü³ÌĞòÑ¡Ôñ¡°ÒÔ¹ÜÀíÔ±È¨ÏŞÔËĞĞ¡±¼´¿É¡£"),
-				TEXT("²Ù×÷Ğè¹ÜÀíÔ±È¨ÏŞ"),
+			msgBox(TEXT("è¯·æ‚¨é‡å¯ç¨‹åºå¹¶ä»¥ç®¡ç†å‘˜æƒé™è¿è¡Œç¨‹åºï¼Œç„¶åå†æ“ä½œã€‚\r\n")
+				TEXT("æç¤ºï¼šé¼ æ ‡å³é”®ç¨‹åºé€‰æ‹©â€œä»¥ç®¡ç†å‘˜æƒé™è¿è¡Œâ€å³å¯ã€‚"),
+				TEXT("æ“ä½œéœ€ç®¡ç†å‘˜æƒé™"),
 				MB_ICONINFORMATION);
 
 			return ;
 		}
 	}
 
-	if (fRegister)	/*×¢²á*/
+	if (fRegister)	/*æ³¨å†Œ*/
 	{
 		TCHAR szExePath[MAX_PATH];
 
 		if (GetModuleFileName(getHinst(), szExePath, MAX_PATH) == 0)
 		{
-			ShowInfo(TEXT("»ñÈ¡³ÌĞòÂ·¾¶Ê±³ö´í"));
-			msgBox(TEXT("×¢²áÎÄ¼şÀàĞÍÊ§°ÜÁË£¡"), TEXT("´íÎó"), MB_ICONERROR);
+			ShowInfo(TEXT("è·å–ç¨‹åºè·¯å¾„æ—¶å‡ºé”™"));
+			msgBox(TEXT("æ³¨å†Œæ–‡ä»¶ç±»å‹å¤±è´¥äº†ï¼"), TEXT("é”™è¯¯"), MB_ICONERROR);
 		}
 		else
 		{
 			if(!RegHelper::RegisterFileType(TEXT(".nbu"), TEXT("Nokia_NBU_File"), szExePath))
 			{
-				ShowInfo(TEXT("×¢²áNBUÎÄ¼şÀàĞÍÊ§°Ü"));
-				msgBox(TEXT("×¢²áNBUÎÄ¼şÀàĞÍÊ§°ÜÁË£¡"), TEXT("´íÎó"), MB_ICONERROR);
+				ShowInfo(TEXT("æ³¨å†ŒNBUæ–‡ä»¶ç±»å‹å¤±è´¥"));
+				msgBox(TEXT("æ³¨å†ŒNBUæ–‡ä»¶ç±»å‹å¤±è´¥äº†ï¼"), TEXT("é”™è¯¯"), MB_ICONERROR);
 			}
 			else
 			{
-				ShowInfo(TEXT("³É¹¦×¢²áNBUÎÄ¼şÀàĞÍ"));
+				ShowInfo(TEXT("æˆåŠŸæ³¨å†ŒNBUæ–‡ä»¶ç±»å‹"));
 			}
 
 			if(!RegHelper::RegisterFileType(TEXT(".vcf"), TEXT("vCard_File"), szExePath))
 			{
-				ShowInfo(TEXT("×¢²áVCFÎÄ¼şÀàĞÍÊ§°Ü"));
-				msgBox(TEXT("×¢²áVCFÎÄ¼şÀàĞÍÊ§°Ü£¡"), TEXT("´íÎó"), MB_ICONERROR);
+				ShowInfo(TEXT("æ³¨å†ŒVCFæ–‡ä»¶ç±»å‹å¤±è´¥"));
+				msgBox(TEXT("æ³¨å†ŒVCFæ–‡ä»¶ç±»å‹å¤±è´¥ï¼"), TEXT("é”™è¯¯"), MB_ICONERROR);
 			}
 			else
 			{
-				ShowInfo(TEXT("³É¹¦×¢²áVCFÎÄ¼şÀàĞÍ"));
+				ShowInfo(TEXT("æˆåŠŸæ³¨å†ŒVCFæ–‡ä»¶ç±»å‹"));
 			}
 		}
 	}
 
-	else			/*È¡Ïû×¢²á*/
+	else			/*å–æ¶ˆæ³¨å†Œ*/
 	{
 		if (!RegHelper::UnRegisterFileType(TEXT(".nbu"), TEXT("Nokia_NBU_File"))){
-			msgBox(TEXT("ÒÆ³ı×¢²áNBUÎÄ¼şÀàĞÍÊ§°Ü£¡"), TEXT("´íÎó"), MB_ICONERROR);
+			msgBox(TEXT("ç§»é™¤æ³¨å†ŒNBUæ–‡ä»¶ç±»å‹å¤±è´¥ï¼"), TEXT("é”™è¯¯"), MB_ICONERROR);
 		}else{
-			ShowInfo(TEXT("ÒÆ³ı×¢²áNBUÎÄ¼şÀàĞÍ³É¹¦"));
+			ShowInfo(TEXT("ç§»é™¤æ³¨å†ŒNBUæ–‡ä»¶ç±»å‹æˆåŠŸ"));
 		}
 
 		if (!RegHelper::UnRegisterFileType(TEXT(".vcf"), TEXT("vCard_File"))){
-			msgBox(TEXT("ÒÆ³ı×¢²áVCFÎÄ¼şÀàĞÍÊ§°Ü£¡"), TEXT("´íÎó"), MB_ICONERROR);
+			msgBox(TEXT("ç§»é™¤æ³¨å†ŒVCFæ–‡ä»¶ç±»å‹å¤±è´¥ï¼"), TEXT("é”™è¯¯"), MB_ICONERROR);
 		}else{
-			ShowInfo(TEXT("ÒÆ³ı×¢²áVCFÎÄ¼şÀàĞÍ³É¹¦"));
+			ShowInfo(TEXT("ç§»é™¤æ³¨å†ŒVCFæ–‡ä»¶ç±»å‹æˆåŠŸ"));
 		}
 	}
 }
@@ -1303,7 +1311,7 @@ bool vCardWnd::vCardContain(const vCard &vc, TString &key)
 	if (vc.note().find(key, 0, false) != TString::npos )
 		return true;
 
-	//Ö»¶ÔĞÕÃûÌØÊâ´¦Àí
+	//åªå¯¹å§“åç‰¹æ®Šå¤„ç†
 	TString temp = vc.name();
 
 	temp.Replace(TEXT(";"), TEXT(" "));

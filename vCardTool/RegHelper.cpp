@@ -1,4 +1,4 @@
-/*
+Ôªø/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -16,13 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <Windows.h>
+#include <windows.h>
 
 #include "RegHelper.h"
 
 //========================================================================
 
-bool RegHelper::RegisterFileType(LPTSTR lpExt, LPTSTR lpDes, LPTSTR exePath)
+bool RegHelper::RegisterFileType(LPCTSTR lpExt, LPCTSTR lpDes, LPCTSTR exePath)
 {
 	if(!CreateKey(HKEY_CLASSES_ROOT, lpExt, NULL, lpDes))	return false;
 
@@ -37,7 +37,7 @@ bool RegHelper::RegisterFileType(LPTSTR lpExt, LPTSTR lpDes, LPTSTR exePath)
 	if (!CreateKey(HKEY_CLASSES_ROOT, key, NULL, value))	return false;
 	
 	wsprintf(key, TEXT("%s\\shell\\open\\command"), lpDes);
-	//wsprintf≤ª»œ%1µƒ’ °≠°≠
+	//wsprintf‰∏çËÆ§%1ÁöÑÂ∏ê‚Ä¶‚Ä¶
 	wsprintf(value, TEXT("\"%s\" \"%%1"), exePath);
 //	lstrcat(value, TEXT("%1\""));
 
@@ -48,14 +48,14 @@ bool RegHelper::RegisterFileType(LPTSTR lpExt, LPTSTR lpDes, LPTSTR exePath)
 
 //========================================================================
 
-bool RegHelper::UnRegisterFileType(LPTSTR lpExt, LPTSTR lpDes)
+bool RegHelper::UnRegisterFileType(LPCTSTR lpExt, LPCTSTR lpDes)
 {
 	if (!DeleteKey(HKEY_CLASSES_ROOT, lpExt))	return false;
 
 	return DeleteKey(HKEY_CLASSES_ROOT, lpDes);
 }
 
-bool RegHelper::CreateKey(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue, LPTSTR lpData)
+bool RegHelper::CreateKey(HKEY hKeyRoot, LPCTSTR lpSubKey, LPCTSTR lpValue, LPCTSTR lpData)
 {
 	HKEY hKey;
 	long lResult = ERROR_SUCCESS;
@@ -77,7 +77,7 @@ bool RegHelper::CreateKey(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue, LPTSTR
 	return true;
 }
 
-bool RegHelper::DeleteKey(HKEY hKeyRoot, LPTSTR lpSubKey)
+bool RegHelper::DeleteKey(HKEY hKeyRoot, LPCTSTR lpSubKey)
 {
 	HKEY hKey;
     long lResult;
@@ -95,7 +95,7 @@ bool RegHelper::DeleteKey(HKEY hKeyRoot, LPTSTR lpSubKey)
     {
         if (lResult == ERROR_FILE_NOT_FOUND)	return true;
 
-        else	return false;		//¥Úø™º¸÷µ≥ˆ¥Ì
+        else	return false;		//ÊâìÂºÄÈîÆÂÄºÂá∫Èîô
     }
 
     dwSize = MAX_PATH;
@@ -106,10 +106,10 @@ bool RegHelper::DeleteKey(HKEY hKeyRoot, LPTSTR lpSubKey)
         do 
 		{
 			lstrcpy(szSubKey, lpSubKey);
-			lstrcat(szSubKey, L"\\");
+			lstrcat(szSubKey, TEXT("\\"));
 			lstrcat(szSubKey, szName);
 
-			//µ›πÈµ˜”√…æ≥˝œ¬“ª≤„◊”º¸
+			//ÈÄíÂΩíË∞ÉÁî®Âà†Èô§‰∏ã‰∏ÄÂ±ÇÂ≠êÈîÆ
             if (!DeleteKey(hKeyRoot, szSubKey))	break;
 
             dwSize = MAX_PATH;
@@ -128,7 +128,7 @@ bool RegHelper::DeleteKey(HKEY hKeyRoot, LPTSTR lpSubKey)
    return false;
 }
 
-bool RegHelper::DeleteKeyValue(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue)
+bool RegHelper::DeleteKeyValue(HKEY hKeyRoot, LPCTSTR lpSubKey, LPCTSTR lpValue)
 {
 
 	HKEY hKey;
@@ -155,9 +155,9 @@ bool RegHelper::DeleteKeyValue(HKEY hKeyRoot, LPTSTR lpSubKey, LPTSTR lpValue)
 	return true;
 }
 
-bool RegHelper::IsKeyExists(HKEY hKeyRoot, LPTSTR lpValueName)
+bool RegHelper::IsKeyExists(HKEY hKeyRoot, LPCTSTR lpValueName)
 {
-	LONG lResult = ::RegQueryValueExW(hKeyRoot, lpValueName, 0, NULL, NULL, NULL);
+	LONG lResult = ::RegQueryValueEx(hKeyRoot, lpValueName, 0, NULL, NULL, NULL);
 
 	if (lResult != ERROR_SUCCESS)
 	{

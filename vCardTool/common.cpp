@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 http://code.google.com/p/vcardtool/
 Copyright (C) 2011  Just Fancy (Just_Fancy@live.com)
 
@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "common.h"
 
 using namespace Tim;
+using std::max;
 
 HBITMAP GradienBitmap(HWND hWnd, COLORREF cr1, COLORREF cr2)
 {
@@ -36,13 +37,13 @@ HBITMAP GradienBitmap(HWND hWnd, COLORREF cr1, COLORREF cr2)
 		fGreenStep = 0.0,
 		fBlueStep  = 0.0;
 
-	//È¡×î´óµÄÉ«²î
+	//å–æœ€å¤§çš„è‰²å·®
 	int nSteps = max(abs(nRed), max(abs(nGreen), abs(nBlue)));
 
-	//È·¶¨Ã¿Ò»ÑÕÉ«Ìî³ä¶à´óµÄ¾ØÐÎÇøÓò
+	//ç¡®å®šæ¯ä¸€é¢œè‰²å¡«å……å¤šå¤§çš„çŸ©å½¢åŒºåŸŸ
 	float fStep = (float)(rcClient.Width() + 5)/(float)nSteps;
 
-	//ÉèÖÃÃ¿Ò»ÑÕÉ«Ìî³äµÄ²½Êý
+	//è®¾ç½®æ¯ä¸€é¢œè‰²å¡«å……çš„æ­¥æ•°
 	fRefStep	= nRed/(float)nSteps;
 	fGreenStep	= nGreen/(float)nSteps;
 	fBlueStep	= nBlue/(float)nSteps;
@@ -105,7 +106,7 @@ bool IsVistaOrLater()
 	OSVERSIONINFO osvi = {0};
 	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
-	if (!GetVersionEx(&osvi))//»ñÈ¡Ê§°Üµ±XPºÃÁË
+	if (!GetVersionEx(&osvi))//èŽ·å–å¤±è´¥å½“XPå¥½äº†
 		return false;
 
 	return osvi.dwMajorVersion >= 6;
